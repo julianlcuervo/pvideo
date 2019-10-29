@@ -8,19 +8,20 @@ import Footer from '../components/Footer';
 import useInitialState from '../hooks/useInitialState'
 import '../assets/styles/App.scss';
 
-const API = 'http://localhost:3000/initalState';
+const API = 'http://ec2-52-205-24-160.compute-1.amazonaws.com:8000/api/Movie/';
 
 //container for componen of Header
 const App = () => {
     const initialState = useInitialState(API);
+    console.log(initialState)
     return(
         <div className="App">
             <Header/>
             <Search/>
-            {initialState.mylist.length > 0 &&
+            {initialState.length > 2 &&
                 <Categories title="Mi Lista">
                     <Carousel>
-                        {initialState.mylist.map(item =>
+                        {initialState.map(item =>
                             <CarouselItem key={item.id} {...item} />
                         )} 
                     </Carousel>
@@ -29,7 +30,7 @@ const App = () => {
             
             <Categories title="Tendencias">
                 <Carousel>
-                    {initialState.trends.map(item =>
+                    {initialState.map(item =>
                     <CarouselItem key={item.id} {...item} />
                     )} 
                 </Carousel>
@@ -37,7 +38,7 @@ const App = () => {
 
             <Categories title="Recomendados">
                 <Carousel>
-                    {initialState.originals.map(item =>
+                    {initialState.map(item =>
                         <CarouselItem key={item.id} {...item} />
                     )}
                 </Carousel>
