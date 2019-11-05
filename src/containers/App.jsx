@@ -8,22 +8,24 @@ import Footer from '../components/Footer';
 import useInitialState from '../hooks/useInitialState'
 import '../assets/styles/App.scss';
 
-const API = 'http://ec2-34-229-42-106.compute-1.amazonaws.com:8000/api/Movie/';
+const API = 'ec2-100-24-17-252.compute-1.amazonaws.com:8000/api/Movie/';
 
 //container for componen of Header
 const App = () => {
     const initialState = useInitialState(API);
     console.log(initialState)
+    var a = initialState.filter(item => item.title==="Avengers Endgame")
+    console.log(a.length)  
     return(
         <div className="App">
             <Header/>
             <Search/>
-            {initialState.length > 2 &&
-                <Categories title="Mi Lista">
+            {a.length === 1 &&
+                <Categories title="Resultados de busqueda">
                     <Carousel>
-                        {initialState.map(item =>
+                        {a.map(item =>
                             <CarouselItem key={item.id} {...item} />
-                        )} 
+                        )}
                     </Carousel>
                 </Categories>
             }
