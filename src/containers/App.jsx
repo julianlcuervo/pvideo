@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 import useInitialState from '../hooks/useInitialState'
 import '../assets/styles/App.scss';
 
-const API = 'ec2-100-24-17-252.compute-1.amazonaws.com:8000/api/Movie/';
+const API = 'http://ec2-54-159-156-52.compute-1.amazonaws.com:8000/api/Movie/';
 
 //container for componen of Header
 const App = () => {
