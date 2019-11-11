@@ -1,4 +1,4 @@
-import React, {useState , useEffect} from 'react';
+import React, { Component } from 'react';
 import Header from '../components/Header';
 import Search from '../components/Search';
 import Categories from '../components/Categories';
@@ -8,47 +8,76 @@ import Footer from '../components/Footer';
 import useInitialState from '../hooks/useInitialState'
 import '../assets/styles/App.scss';
 
-const API = 'http://ec2-54-159-156-52.compute-1.amazonaws.com:8000/api/Movie/';
+const API = 'http://ec2-3-94-250-108.compute-1.amazonaws.com:8000/api/Movie/';
 
 //container for componen of Header
-const App = () => {
-    const initialState = useInitialState(API);
-    console.log(initialState)
-    var a = initialState.filter(item => item.title==="Avengers Endgame")
-    console.log(a.length)  
-    return(
-        <div className="App">
-            <Header/>
-            <Search/>
-            {a.length === 1 &&
-                <Categories title="Resultados de busqueda">
+class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            initialState: [],
+            selectMovie: []
+        };
+    }
+    
+    componentDidMount() {
+        fetch(API)
+            .then(response => response.json())
+            .then(data => this.setState({ initialState: data }));
+    }
+
+    videoSearch(term) {
+        const { initialState } = this.state;
+        this.setState({
+            selectMovie:
+                initialState.filter(item =>
+                    item.title.toUpperCase().indexOf(term.toUpperCase()) !== -1
+                    &&
+                    term.toUpperCase() !== ""
+                    &&
+                    term.toUpperCase() !== " "
+                )
+        })
+    }
+
+    render() {
+        const { initialState } = this.state;
+        const { selectMovie } = this.state;
+        return (
+            <div className="App">
+                <Header />
+                <Search onSearchTermChange={term => this.videoSearch(term)} />
+                {selectMovie.length >= 1 &&
+                    <Categories title="Resultados de busqueda">
+                        <Carousel>
+                            {selectMovie.map(item =>
+                                <CarouselItem key={item.id} {...item} />
+                            )}
+                        </Carousel>
+                    </Categories>
+                }
+
+                <Categories title="Tendencias">
                     <Carousel>
-                        {a.map(item =>
+                        {initialState.map(item =>
                             <CarouselItem key={item.id} {...item} />
                         )}
                     </Carousel>
                 </Categories>
-            }
-            
-            <Categories title="Tendencias">
-                <Carousel>
-                    {initialState.map(item =>
-                    <CarouselItem key={item.id} {...item} />
-                    )} 
-                </Carousel>
-            </Categories>
 
-            <Categories title="Recomendados">
-                <Carousel>
-                    {initialState.map(item =>
-                        <CarouselItem key={item.id} {...item} />
-                    )}
-                </Carousel>
-            </Categories>
+                <Categories title="Recomendados">
+                    <Carousel>
+                        {initialState.map(item =>
+                            <CarouselItem key={item.id} {...item} />
+                        )}
+                    </Carousel>
+                </Categories>
 
-            <Footer/>
-        </div>
-    );
+                <Footer />
+            </div>
+        );
+    }
 }
 
 export default App;

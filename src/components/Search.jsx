@@ -1,26 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import '../assets/styles/components/Search.scss'
 
-const Search = () => {
-  var search = document.getElementById("search");
-  var button = document.getElementById("button");
+class Search extends Component {
 
-  if (search) {
-    button.addEventListener("click", useSearch);
+  constructor(props){
+    super(props);
+
+    this.state = {term: ''};
   }
-  function useSearch() {
-    var x = search.value;
-    
-    alert(x);
-    console.log(x)
+  render() {
+    return (
+      <section className="main">
+        <h2 className="main__title">¿Qué película buscas?</h2>
+        <input type="search" className="input" placeholder="Buscar..." 
+        value={this.state.value}
+        onChange={event => this.onInputChange(event.target.value)} />
+      </section>
+    );
   }
-  return (
-    <section className="main">
-      <h2 className="main__title">¿Qué película buscas?</h2>
-      <input type="search" className="input" placeholder="Buscar..." id="search" />
-      <input type="button" id="button" value="Realizar busqueda"></input>
-    </section>
-  );
+
+  onInputChange(term){
+    this.setState({term})
+    this.props.onSearchTermChange(term);
+  }
 }
 
 export default Search;
