@@ -8,10 +8,10 @@ import Footer from '../components/Footer';
 import useInitialState from '../hooks/useInitialState'
 import '../assets/styles/App.scss';
 
-const API = 'http://ec2-3-94-250-108.compute-1.amazonaws.com:8000/api/Movie/';
+const API = 'http://ec2-54-152-225-204.compute-1.amazonaws.com:8000/api/Movie/';
 
 //container for componen of Header
-class App extends Component {
+class Home extends Component {
 
     constructor(props) {
         super(props);
@@ -80,4 +80,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default Home;
