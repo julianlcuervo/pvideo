@@ -16,7 +16,6 @@ ul {
 }
 
 body {
-    font-family: 'Roboto', Arial, Helvetica, Sans-serif, Verdana;
     background: rgb(78, 74, 74);
 }
 
@@ -163,25 +162,3 @@ body {
     }
 }
 
-.carousel-item {
-    border-radius: 20px;
-    overflow: hidden;
-    position: relative;
-    display: inline-block;
-    width: 260px;
-    height: 310px;
-    margin-right: 10px;
-    margin-left: 28px;
-    font-size: 20px;
-    cursor: pointer;
-    transition: 450ms all;
-    -webkit-transform-origin: center left;
-    transform-origin: center left;
-}
-
-.carousel-item__img {
-    width: 260px;
-    height: 310px;
-    -o-object-fit: cover;
-    object-fit: cover;
-}

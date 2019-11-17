@@ -5,9 +5,8 @@ import Categories from '../components/Categories';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
 import Footer from '../components/Footer';
-import useInitialState from '../hooks/useInitialState'
 import '../assets/styles/App.scss';
-import Bloc from './Bloc';
+
 
 const API = 'http://ec2-34-227-68-165.compute-1.amazonaws.com:8000/api/Movie/';
 

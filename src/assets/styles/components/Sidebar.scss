@@ -7,11 +7,12 @@
     padding: 1em;
     box-sizing: border-box;
     height: 100vh;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .sidebarPlaylist {
     overflow: auto;
+    height: 300px;
 }
 
 .myPlaylist {
@@ -68,4 +69,27 @@
 
 .playlistFriends-item span {
     display: inline-block;
+}
+
+.sidebar-item {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    width: 260px;
+    height: 310px;
+    margin-right: 10px;
+    margin-left: 28px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 450ms all;
+    -webkit-transform-origin: center left;
+    transform-origin: center left;
+}
+
+.sidebar-item__img {
+    width: 260px;
+    height: 310px;
+    -o-object-fit: cover;
+    object-fit: cover;
 }
