@@ -7,8 +7,9 @@ import CarouselItem from '../components/CarouselItem';
 import Footer from '../components/Footer';
 import useInitialState from '../hooks/useInitialState'
 import '../assets/styles/App.scss';
+import Bloc from './Bloc';
 
-const API = 'http://ec2-54-152-225-204.compute-1.amazonaws.com:8000/api/Movie/';
+const API = 'http://ec2-34-227-68-165.compute-1.amazonaws.com:8000/api/Movie/';
 
 //container for componen of Header
 class Home extends Component {
@@ -20,7 +21,7 @@ class Home extends Component {
             selectMovie: []
         };
     }
-    
+
     componentDidMount() {
         fetch(API)
             .then(response => response.json())
@@ -41,6 +42,10 @@ class Home extends Component {
         })
     }
 
+    selectItem(term) {
+        this.props.history.push('/bloc', { id: term })
+    }
+
     render() {
         const { initialState } = this.state;
         const { selectMovie } = this.state;
@@ -52,7 +57,10 @@ class Home extends Component {
                     <Categories title="Resultados de busqueda">
                         <Carousel>
                             {selectMovie.map(item =>
-                                <CarouselItem key={item.id} {...item} />
+                                    <CarouselItem
+                                        key={item.id} {...item}
+                                        onCarouselItemTermChange={term => this.selectItem(term)}
+                                    />
                             )}
                         </Carousel>
                     </Categories>
@@ -61,7 +69,10 @@ class Home extends Component {
                 <Categories title="Tendencias">
                     <Carousel>
                         {initialState.map(item =>
-                            <CarouselItem key={item.id} {...item} />
+                            <CarouselItem
+                                key={item.id} {...item}
+                                onCarouselItemTermChange={term => this.selectItem(term)}
+                            />
                         )}
                     </Carousel>
                 </Categories>
@@ -69,7 +80,10 @@ class Home extends Component {
                 <Categories title="Recomendados">
                     <Carousel>
                         {initialState.map(item =>
-                            <CarouselItem key={item.id} {...item} />
+                            <CarouselItem
+                                key={item.id} {...item}
+                                onCarouselItemTermChange={term => this.selectItem(term)}
+                            />
                         )}
                     </Carousel>
                 </Categories>

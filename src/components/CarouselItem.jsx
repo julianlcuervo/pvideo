@@ -1,38 +1,43 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import '../assets/styles/components/CarouselItem.scss';
 import playIcon from '../assets/static/play-icon.png';
 import plusIcon from '../assets/static/plus-icon.png';
 
-class CarouselItem extends Component{
+class CarouselItem extends Component {
   constructor(props) {
     super(props);
-    this.cover=props.cover;
-    this.title=props.title;
-    this.year=props.year;
-    this.contentRating=props.contentRating;
-    this.duration=props.duration;
-    this.sayHello = this.sayHello.bind(this);
+    this.id = props.id;
+    this.cover = props.cover;
+    this.title = props.title;
+    this.year = props.year;
+    this.contentRating = props.contentRating;
+    this.duration = props.duration;
+    this.selectMovie = this.selectMovie.bind(this);
   }
 
-  sayHello() {
-    alert(this.title);
-  }
-render(){
-return(
-    <div className="carousel-item" onClick={this.sayHello}>
-    <img className="carousel-item__img"  src={this.cover} alt={this.title} />
-    <div className="carousel-item__details">
-      <div>
-        <img className="carousel-item__details--img" src={playIcon} alt="Play Icon"/> 
+  render() {
+    return (
+      <div className="carousel-item" onClick={this.selectMovie}>
+        <img className="carousel-item__img" src={this.cover} alt={this.title} />
+        <div className="carousel-item__details">
+          <div>
+            <img className="carousel-item__details--img" src={playIcon} alt="Play Icon" />
+          </div>
+          <p className="carousel-item__details--title">{this.title}</p>
+          <p className="carousel-item__details--subtitle">
+            {`${this.year} ${this.contentRating} ${this.duration}`}
+          </p>
+        </div>
       </div>
-      <p className="carousel-item__details--title">{this.title}</p>
-      <p className="carousel-item__details--subtitle">
-      {`${this.year} ${this.contentRating} ${this.duration}`}
-      </p>
-    </div>
-  </div>
-)}};
+    )
+  }
+  selectMovie() {
+    //this.props.history.push("/bloc");
+    this.props.onCarouselItemTermChange(this.id);
+  }
+};
 /*
 CarouselItem.propTypes = {
   this.cover: PropTypes.string,

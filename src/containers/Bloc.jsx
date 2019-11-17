@@ -4,7 +4,7 @@ import Commentary from '../components/Commentary';
 import '../assets/styles/components/Bloc.scss';
 import '../assets/styles/App.scss';
 
-const API = 'http://ec2-54-152-225-204.compute-1.amazonaws.com:8000/api/Movie/';
+const API = 'http://ec2-34-227-68-165.compute-1.amazonaws.com:8000/api/Movie/';
 
 class Bloc extends Component {
 
@@ -14,31 +14,22 @@ class Bloc extends Component {
             initialState: [],
             selectMovie: []
         };
+        //console.log(props)
     }
-
     componentDidMount() {
+        console.log(this.props.location.state.id)
         fetch(API)
             .then(response => response.json())
             .then(data => this.setState({
                 initialState: data, selectMovie: data.filter(item =>
-                    item.title === "Avengers Endgame"
+                    item.id === this.props.location.state.id
                 )
             }));
     }
 
-    videoSearch(term) {
-        const { initialState } = this.state;
-        this.setState({
-            selectMovie:
-                initialState.filter(item =>
-                    item.title.toUpperCase() == "Joker"
-                )
-        })
-    }
     render() {
         const { initialState } = this.state;
         const { selectMovie } = this.state;
-        console.log(selectMovie)
         return (
             <section className="home" id="home">
                 {selectMovie.map(item =>
@@ -47,7 +38,9 @@ class Bloc extends Component {
                 <div className="home-primary">
                     <div className="comments-container">
                         <ul className="comments-list" id="comments-list">
-                            <Commentary />
+                            {initialState.map(item =>
+                                <Commentary key={item.id} {...item} />
+                            )}
                         </ul>
                     </div>
                 </div>
