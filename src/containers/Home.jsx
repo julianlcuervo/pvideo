@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 import '../assets/styles/App.scss';
 
 
-const API = 'http://ec2-34-227-68-165.compute-1.amazonaws.com:8000/api/Movie/';
+const API = 'http://ec2-54-80-178-43.compute-1.amazonaws.com:8000/api/Movie/';
 
 //container for componen of Header
 class Home extends Component {
@@ -17,14 +17,24 @@ class Home extends Component {
         super(props);
         this.state = {
             initialState: [],
-            selectMovie: []
+            selectMovie: [],
+            trends: [],
+            Recomends: []
         };
     }
 
     componentDidMount() {
         fetch(API)
             .then(response => response.json())
-            .then(data => this.setState({ initialState: data }));
+            .then(data => this.setState({
+                initialState: data,
+                trends: data.filter(item =>
+                    item.identifier === "Tendencia"
+                ),
+                Recomends: data.filter(item =>
+                    item.identifier === "Recomendado"
+                )
+            }));
     }
 
     videoSearch(term) {
@@ -48,6 +58,10 @@ class Home extends Component {
     render() {
         const { initialState } = this.state;
         const { selectMovie } = this.state;
+        const { trends } = this.state;
+        const { Recomends } = this.state;
+        console.log(trends)
+
         return (
             <div className="App">
                 <Header />
@@ -56,10 +70,10 @@ class Home extends Component {
                     <Categories title="Resultados de busqueda">
                         <Carousel>
                             {selectMovie.map(item =>
-                                    <CarouselItem
-                                        key={item.id} {...item}
-                                        onCarouselItemTermChange={term => this.selectItem(term)}
-                                    />
+                                <CarouselItem
+                                    key={item.id} {...item}
+                                    onCarouselItemTermChange={term => this.selectItem(term)}
+                                />
                             )}
                         </Carousel>
                     </Categories>
@@ -67,7 +81,7 @@ class Home extends Component {
 
                 <Categories title="Tendencias">
                     <Carousel>
-                        {initialState.map(item =>
+                        {trends.map(item =>
                             <CarouselItem
                                 key={item.id} {...item}
                                 onCarouselItemTermChange={term => this.selectItem(term)}
@@ -77,6 +91,17 @@ class Home extends Component {
                 </Categories>
 
                 <Categories title="Recomendados">
+                    <Carousel>
+                        {Recomends.map(item =>
+                            <CarouselItem
+                                key={item.id} {...item}
+                                onCarouselItemTermChange={term => this.selectItem(term)}
+                            />
+                        )}
+                    </Carousel>
+                </Categories>
+
+                <Categories title="Catalogo completo">
                     <Carousel>
                         {initialState.map(item =>
                             <CarouselItem

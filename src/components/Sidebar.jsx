@@ -17,7 +17,6 @@ class Sidebar extends Component {
             <div className="sidebar">
                 <div className="sidebar-item">
                     <img className="sidebar-item__img" src={this.cover} alt="item" />
-
                 </div>
                 <div className="sidebarPlaylist">
                     <h2 className="sidebarPlaylist-title">{this.title}</h2>
