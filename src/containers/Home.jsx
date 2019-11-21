@@ -60,7 +60,7 @@ class Home extends Component {
         const { selectMovie } = this.state;
         const { trends } = this.state;
         const { Recomends } = this.state;
-        console.log(trends)
+        //console.log(trends)
 
         return (
             <div className="App">
