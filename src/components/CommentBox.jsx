@@ -18,7 +18,7 @@ const CommentBox = (props) => {
         }
     }
     return (
-        <header >
+        <header className="header-commet">
             <div className="comment-container">
                 <input id="user" type="search" className="comment-bar-user" placeholder="Usuario" />
                 <input id="text" type="search" className="comment-bar-text" placeholder="Comentario" />

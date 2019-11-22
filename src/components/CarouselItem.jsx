@@ -20,11 +20,18 @@ class CarouselItem extends Component {
 
   render() {
     return (
-      <div className="carousel-item" onClick={this.selectMovie}>
-        <img className="carousel-item__img" src={this.cover} alt={this.title} />
+      <div className="carousel-item" >
+        <div className="carousel-item-img" onClick={this.selectMovie}>
+          <img className="carousel-item__img" src={this.cover} alt={this.title}  />
+        </div>
         <div className="carousel-item__details">
           <div>
-              <img className="carousel-item__details--img" src={playIcon} alt="Play Icon" />
+            <Link to={`/player/${this.id}`}>
+              <img
+                className="carousel-item__details--img"
+                src={playIcon}
+                alt="Play Icon" />
+            </Link>
           </div>
           <p className="carousel-item__details--title">{this.title}</p>
           <p className="carousel-item__details--subtitle">

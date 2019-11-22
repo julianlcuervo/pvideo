@@ -1,10 +1,19 @@
-header {
+.header-commet {
     width: inherit;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 0;
-    margin-left:60px;
+    margin-left:70px;
+    margin-bottom: 50px;
+    align-items: center;
+    background: rgb(78, 74, 74);
+    color: white;
+    display: flex;
+    height: 100px;
+    justify-content: space-between;
+    top: 0px;
+    width: 100%;
 }
 
 .comment-container{
