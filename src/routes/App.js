@@ -6,7 +6,7 @@ import Bloc from '../containers/Bloc';
 const App = () => (
     <BrowserRouter>
         <Route exact path="/" component={Home} />
-        <Route exact path="/bloc" component={Bloc} />
+        <Route exact path="/bloc/:id" component={Bloc} />
     </BrowserRouter>
 );
 

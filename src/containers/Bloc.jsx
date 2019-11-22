@@ -18,20 +18,21 @@ class Bloc extends Component {
             comments: [],
             stateComment: ''
         };
+        this.id = this.props.match.params.id;
     }
     componentDidMount() {
         fetch(API)
             .then(response => response.json())
             .then(data => this.setState({
                 initialState: data, selectMovie: data.filter(item =>
-                    item.id === this.props.location.state.id
+                    item.id === Number(this.id)
                 )
             }));
         fetch(APIcomments)
             .then(response => response.json())
             .then(data => this.setState({
                 comments: data.filter(item =>
-                    item.idMovie === this.props.location.state.id
+                    item.idMovie === Number(this.id)
                 )
             }));
     }
@@ -47,7 +48,7 @@ class Bloc extends Component {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    idMovie: this.props.location.state.id,
+                    idMovie: this.id,
                     text: term[1],
                     userName: term[0]
                 })
@@ -57,7 +58,7 @@ class Bloc extends Component {
                     .then(response => response.json())
                     .then(data => this.setState({
                         comments: data.filter(item =>
-                            item.idMovie === this.props.location.state.id
+                            item.idMovie === Number(this.id)
                         )
                     }));
             }, 1000)
@@ -68,7 +69,7 @@ class Bloc extends Component {
         const { initialState } = this.state;
         const { selectMovie } = this.state;
         const { comments } = this.state;
-        //console.log(comments)
+        //console.log(selectMovie)
         //console.log(comments["1"].idComment)
         return (
             <section className="home" id="home">

@@ -52,7 +52,7 @@ class Home extends Component {
     }
 
     selectItem(term) {
-        this.props.history.push('/bloc', { id: term })
+        this.props.history.push('/bloc/'+term);
     }
 
     render() {

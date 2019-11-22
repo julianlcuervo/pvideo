@@ -14,6 +14,7 @@ class CarouselItem extends Component {
     this.year = props.year;
     this.contentRating = props.contentRating;
     this.duration = props.duration;
+    this.source = props.source;
     this.selectMovie = this.selectMovie.bind(this);
   }
 
@@ -23,7 +24,7 @@ class CarouselItem extends Component {
         <img className="carousel-item__img" src={this.cover} alt={this.title} />
         <div className="carousel-item__details">
           <div>
-            <img className="carousel-item__details--img" src={playIcon} alt="Play Icon" />
+              <img className="carousel-item__details--img" src={playIcon} alt="Play Icon" />
           </div>
           <p className="carousel-item__details--title">{this.title}</p>
           <p className="carousel-item__details--subtitle">
