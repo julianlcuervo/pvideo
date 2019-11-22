@@ -18,10 +18,8 @@ class Bloc extends Component {
             comments: [],
             stateComment: ''
         };
-        //console.log(props)
     }
     componentDidMount() {
-        //console.log(this.props.location.state.id)
         fetch(API)
             .then(response => response.json())
             .then(data => this.setState({
@@ -40,7 +38,6 @@ class Bloc extends Component {
 
     viewComment(term) {
         const { stateComment } = this.state;
-        console.log(term[1])
         if (stateComment !== term[1]) {
             this.setState({ stateComment: term[1] })
             fetch(APIcomments, {
@@ -55,15 +52,15 @@ class Bloc extends Component {
                     userName: term[0]
                 })
             })
-            fetch(APIcomments)
-                .then(response => response.json())
-                .then(data => this.setState({
-                    comments: data.filter(item =>
-                        item.idMovie === this.props.location.state.id
-                    )
-                }));
-        } else {
-            this.setState({ stateComment: '' })
+            setTimeout(() => {
+                fetch(APIcomments)
+                    .then(response => response.json())
+                    .then(data => this.setState({
+                        comments: data.filter(item =>
+                            item.idMovie === this.props.location.state.id
+                        )
+                    }));
+            }, 1000)
         }
     }
 
