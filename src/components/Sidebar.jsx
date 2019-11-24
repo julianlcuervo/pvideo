@@ -11,6 +11,12 @@ class Sidebar extends Component {
         this.duration = props.duration;
         this.gender = props.gender;
         this.description = props.description;
+        this.language = props.language;
+        this.reparto = props.reparto;
+        this.pais = props.pais;
+        this.director = props.director;
+        this.festreno = props.festreno;
+        console.log(this.description)
     }
     render() {
         return (
@@ -22,60 +28,55 @@ class Sidebar extends Component {
                     <h2 className="sidebarPlaylist-title">{this.title}</h2>
                     <ul className="playlistFriends">
                         <li className="playlistFriends-item">
-                            <a href="#">
-                                <span>
-                                    <strong>Año:  </strong>{this.year}
-                                </span>
-                            </a>
+                            <span>
+                                <strong>Año:  </strong>{this.year}
+                            </span>
                         </li>
                         <li className="playlistFriends-item">
-                            <a href="#">
-                                <span>
-                                    <strong>Genero:  </strong>{this.gender}
-                                </span>
-                            </a>
+                            <span>
+                                <strong>Genero:  </strong>{this.gender}
+                            </span>
                         </li>
                         <li className="playlistFriends-item">
-                            <a href="#">
-                                <span>
-                                    <strong>Rango de edad:  </strong>{this.contentRating}
-                                </span>
-                            </a>
+                            <span>
+                                <strong>Pais:  </strong>{this.pais}
+                            </span>
                         </li>
                         <li className="playlistFriends-item">
-                            <a href="#">
-                                <span>
-                                    <strong>Duración:  </strong>{this.duration}
-                                </span>
-                            </a>
+                            <span>
+                                <strong>Rango de edad:  </strong>{this.contentRating}
+                            </span>
                         </li>
                         <li className="playlistFriends-item">
-                            <a href="#">
-                                <span>
-                                    <strong>Descripción:  </strong>{this.description}
+                            <span>
+                                <strong>Duración:  </strong>{this.duration} minutos
                                 </span>
-                            </a>
                         </li>
                         <li className="playlistFriends-item">
-                            <a href="#">
-                                <span>
-                                    <strong>Descripción:  </strong>{this.description}
-                                </span>
-                            </a>
+                            <span>
+                                <strong>Lenguaje:  </strong>{this.language}
+                            </span>
                         </li>
                         <li className="playlistFriends-item">
-                            <a href="#">
-                                <span>
-                                    <strong>Descripción:  </strong>{this.description}
-                                </span>
-                            </a>
+                            <span>
+                                <strong>Director:  </strong>{this.director}
+                            </span>
                         </li>
                         <li className="playlistFriends-item">
-                            <a href="#">
-                                <span>
-                                    <strong>Descripción:  </strong>{this.description}
-                                </span>
-                            </a>
+                            <span>
+                                <strong>Reparto:  </strong>{this.reparto}
+                            </span>
+                        </li>
+                        <li className="playlistFriends-item">
+                            <span>
+                                <strong>Fecha de estreno:  </strong>{this.festreno}
+                            </span>
+                        </li>
+                        <li className="playlistFriends-item">
+
+                            <span>
+                                <strong>Descripción:  </strong>{this.description}
+                            </span>
                         </li>
                     </ul>
                 </div>
