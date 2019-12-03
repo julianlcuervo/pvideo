@@ -1,0 +1,95 @@
+.sidebar {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr 1fr;
+    background: rgb(92, 89, 89);
+    color: white;
+    padding: 1em;
+    box-sizing: border-box;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidebarPlaylist {
+    overflow: auto;
+    height: 280px;
+}
+
+.myPlaylist {
+    padding: 0 20px;
+}
+
+.myPlaylist-item a {
+    color: white;
+    text-decoration: none;
+    font-size: .8em;
+    display: block;
+    margin-bottom: 7px;
+}
+
+.myPlaylist-item:last-child a {
+    margin-bottom: 0;
+}
+
+.myPlaylist-item a:hover {
+    text-decoration: underline;
+}
+
+.playlistFriends {
+    padding: 0;
+}
+
+.playlistFriends-item {
+    color: white;
+}
+
+.playlistFriends-item {
+    display: flex;
+    margin-bottom: 7px;
+    font-size: .8em;
+}
+
+.playlistFriends-item a {
+    display: inline-flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+}
+
+.playlistFriends-item:hover a {
+    text-decoration: underline;
+}
+
+.playlistFriends-item img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.playlistFriends-item span {
+    display: inline-block;
+}
+
+.sidebar-item {
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    width: 260px;
+    height: 310px;
+    margin-right: 10px;
+    margin-left: 28px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 450ms all;
+    -webkit-transform-origin: center left;
+    transform-origin: center left;
+}
+
+.sidebar-item__img {
+    width: 260px;
+    height: 310px;
+    -o-object-fit: cover;
+    object-fit: cover;
+}

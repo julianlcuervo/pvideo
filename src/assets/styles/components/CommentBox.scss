@@ -1,0 +1,54 @@
+.header-commet {
+    width: inherit;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0;
+    margin-left:70px;
+    margin-bottom: 50px;
+    align-items: center;
+    background: rgb(78, 74, 74);
+    color: white;
+    display: flex;
+    height: 100px;
+    justify-content: space-between;
+    top: 0px;
+    width: 100%;
+}
+
+.comment-container{
+    margin-top: 12px;
+    margin-right:40px; 
+    width: 80%; 
+}
+
+.comment-bar-user,
+.comment-bar-text{
+    background-color: rgba(255,255,255,0.1);
+    border: 2px solid white;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Muli', sans-serif;
+    font-size: 16px;
+    height: 50px;
+    margin-bottom: 10px;
+    outline: none;
+    padding: 0px 20px;
+    width: 100%;
+    
+  }
+
+.comment-button {
+    background-color: rgb(209, 203, 203);
+    border: 2px solid white;
+    border-radius: 17px;
+    color: rgb(56, 55, 55);
+    width: 110px;
+    height: 110px;
+    font-size: 20px;
+    font-weight: 900;
+    -webkit-box-shadow: 3px 3px 12px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 12px 1px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 12px 1px rgba(0,0,0,0.75);
+}
+
