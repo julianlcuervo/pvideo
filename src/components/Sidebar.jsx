@@ -16,7 +16,6 @@ class Sidebar extends Component {
         this.pais = props.pais;
         this.director = props.director;
         this.festreno = props.festreno;
-        console.log(this.description)
     }
     render() {
         return (
