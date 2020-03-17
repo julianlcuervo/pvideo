@@ -8,7 +8,8 @@ import Footer from '../components/Footer';
 import '../assets/styles/App.scss';
 
 
-const API = 'http://ec2-54-80-178-43.compute-1.amazonaws.com:8000/api/Movie/';
+const API = 'http://ec2-3-83-101-178.compute-1.amazonaws.com:8000/api/Movie/';
+const APIAI = 'http://localhost:3000/'
 
 //container for componen of Header
 class Home extends Component {
@@ -19,7 +20,9 @@ class Home extends Component {
             initialState: [],
             selectMovie: [],
             trends: [],
-            Recomends: []
+            Recomends: [],
+            AI: [],
+            selectImage: []
         };
     }
 
@@ -35,9 +38,14 @@ class Home extends Component {
                     item.identifier === "Recomendado"
                 )
             }));
+        fetch(APIAI)
+            .then(response => response.json())
+            .then(data => this.setState({
+                AI: data
+            }))
     }
 
-    videoSearch(term) {
+    /*videoSearch(term) {
         const { initialState } = this.state;
         this.setState({
             selectMovie:
@@ -49,10 +57,103 @@ class Home extends Component {
                     term.toUpperCase() !== " "
                 )
         })
+    }*/
+
+    videoSearch(term) {
+        const { AI } = this.state;
+        const { initialState } = this.state
+        this.setState({
+            //AI.arl[0].r5
+            selectMovie:
+                initialState.filter(item =>
+                    item.title.toUpperCase().indexOf(term.toUpperCase()) !== -1
+                    &&
+                    term.toUpperCase() !== ""
+                    &&
+                    term.toUpperCase() !== " "
+                )
+            /*initialState.filter(item =>
+            item.title.toUpperCase().indexOf(term.toUpperCase()) !== -1
+            ||
+            item.source.toUpperCase().indexOf(AI.arl.filter(item =>
+                    item.r1.toUpperCase() === term.toUpperCase()
+                    ||
+                    item.r2.toUpperCase() === term.toUpperCase()
+                    ||
+                    item.r3.toUpperCase() === term.toUpperCase()
+                    ||
+                    item.r4.toUpperCase() === term.toUpperCase()
+                    ||
+                    item.r5.toUpperCase() === term.toUpperCase()
+            )[0].move)
+            &&
+            term.toUpperCase() !== ""
+            &&
+            term.toUpperCase() !== " "
+            )*/
+
+            /*
+        console.log(
+            AI.arl.filter(item =>
+                item.r1.toUpperCase() === term.toUpperCase()
+                ||
+                item.r2.toUpperCase() === term.toUpperCase()
+                ||
+                item.r3.toUpperCase() === term.toUpperCase()
+                ||
+                item.r4.toUpperCase() === term.toUpperCase()
+                ||
+                item.r5.toUpperCase() === term.toUpperCase()
+            ).filter(item=>item['"0"'].move)*/
+            //"https://imagepvideo.s3.amazonaws.com/jooker.jpg"
+            /*&&
+            item.title.toUpperCase().indexOf(term.toUpperCase()) !== -1
+            &&
+            term.toUpperCase() !== ""
+            &&
+            term.toUpperCase() !== " "*/
+        })
+
+    }
+
+    imgSearch(term) {
+        const { AI } = this.state
+        const { initialState } = this.state
+        this.setState({
+            //AI.arl[0].r5
+            selectMovie:
+                initialState.filter(item =>
+                    item.source.toUpperCase().indexOf(AI.arl.filter(item =>
+                        item.r1.toUpperCase() === term.toUpperCase()
+                        ||
+                        item.r2.toUpperCase() === term.toUpperCase()
+                        ||
+                        item.r3.toUpperCase() === term.toUpperCase()
+                        ||
+                        item.r4.toUpperCase() === term.toUpperCase()
+                        ||
+                        item.r5.toUpperCase() === term.toUpperCase()
+                    )[0].move)
+                    &&
+                    term.toUpperCase() !== ""
+                    &&
+                    term.toUpperCase() !== " "
+                )
+        })
+
+    }
+
+
+    selectionImage() {
+        const { selectImage } = this.state
+        this.state({
+            selectMovie:
+                console.log(selectImage)
+        })
     }
 
     selectItem(term) {
-        this.props.history.push('/bloc/'+term);
+        this.props.history.push('/bloc/' + term);
     }
 
     render() {
@@ -60,12 +161,15 @@ class Home extends Component {
         const { selectMovie } = this.state;
         const { trends } = this.state;
         const { Recomends } = this.state;
+        /*if (selectMovie.length == 0) {
+            console.log("no hay nada")
+        }*/
         //console.log(trends)
 
         return (
             <div className="App">
                 <Header />
-                <Search onSearchTermChange={term => this.videoSearch(term)} />
+                <Search onSearchTermChange={term => { this.videoSearch(term), this.imgSearch(term) }} />
                 {selectMovie.length >= 1 &&
                     <Categories title="Resultados de busqueda">
                         <Carousel>
