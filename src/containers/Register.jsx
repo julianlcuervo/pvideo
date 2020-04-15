@@ -1,22 +1,34 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import RegisterBox from '../components/RegisterBox';
 import '../assets/styles/components/Register.scss';
 
-const Register = () => (
-    <section className="register">
-        <section className="register__container">
-        <h2>Regístrate</h2>
-        <form className="register__container--form">
-            <input className="input" type="text" placeholder="Nombre"/>
-            <input className="input" type="text" placeholder="Correo"/>
-            <input className="input" type="password" placeholder="Contraseña"/>
-            <button className="button">Registrarme</button>
-        </form>
-        <Link to="/login">
-            Iniciar sesión
-        </Link>
-        </section>
-    </section>
-);
+const API = 'http://ec2-54-145-135-30.compute-1.amazonaws.com:8000/api/User/'; 
+class Register extends Component {
+
+    sendRegister(term){
+        fetch(API, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                Name: term[0],
+                Email: term[1],
+                Password: term[2]
+            })
+        })
+    }
+
+    render() {
+        return (
+            <section className="register">
+                <RegisterBox useRegister={term => this.sendRegister(term)}/>
+            </section>
+        )
+    }
+}
+
 
 export default Register;

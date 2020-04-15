@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../assets/styles/components/Player.scss';
 
-const API = 'http://ec2-3-83-101-178.compute-1.amazonaws.com:8000/api/Movie/';
+const API = 'http://ec2-54-145-135-30.compute-1.amazonaws.com:8000/api/Movie/';
 class Player extends Component {
 
     constructor(props) {

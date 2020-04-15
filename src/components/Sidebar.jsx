@@ -12,11 +12,8 @@ class Sidebar extends Component {
         this.gender = props.gender;
         this.description = props.description;
         this.language = props.language;
-        this.reparto = props.reparto;
-        this.pais = props.pais;
-        this.director = props.director;
-        this.festreno = props.festreno;
     }
+
     render() {
         return (
             <div className="sidebar">
@@ -38,11 +35,6 @@ class Sidebar extends Component {
                         </li>
                         <li className="playlistFriends-item">
                             <span>
-                                <strong>Pais:  </strong>{this.pais}
-                            </span>
-                        </li>
-                        <li className="playlistFriends-item">
-                            <span>
                                 <strong>Rango de edad:  </strong>{this.contentRating}
                             </span>
                         </li>
@@ -57,22 +49,6 @@ class Sidebar extends Component {
                             </span>
                         </li>
                         <li className="playlistFriends-item">
-                            <span>
-                                <strong>Director:  </strong>{this.director}
-                            </span>
-                        </li>
-                        <li className="playlistFriends-item">
-                            <span>
-                                <strong>Reparto:  </strong>{this.reparto}
-                            </span>
-                        </li>
-                        <li className="playlistFriends-item">
-                            <span>
-                                <strong>Fecha de estreno:  </strong>{this.festreno}
-                            </span>
-                        </li>
-                        <li className="playlistFriends-item">
-
                             <span>
                                 <strong>Descripción:  </strong>{this.description}
                             </span>

@@ -8,8 +8,8 @@ import Footer from '../components/Footer';
 import '../assets/styles/App.scss';
 
 
-const API = 'http://ec2-3-83-101-178.compute-1.amazonaws.com:8000/api/Movie/';
-const APIAI = 'http://localhost:3000/'
+const API = 'http://ec2-54-145-135-30.compute-1.amazonaws.com:8000/api/Movie/';
+const APIAI = 'http://54.145.135.30:3000/'
 
 //container for componen of Header
 class Home extends Component {
@@ -123,7 +123,7 @@ class Home extends Component {
             //AI.arl[0].r5
             selectMovie:
                 initialState.filter(item =>
-                    item.source.toUpperCase().indexOf(AI.arl.filter(item =>
+                    item.cover === AI.arl.filter(item =>
                         item.r1.toUpperCase() === term.toUpperCase()
                         ||
                         item.r2.toUpperCase() === term.toUpperCase()
@@ -133,14 +133,8 @@ class Home extends Component {
                         item.r4.toUpperCase() === term.toUpperCase()
                         ||
                         item.r5.toUpperCase() === term.toUpperCase()
-                    )[0].move)
-                    &&
-                    term.toUpperCase() !== ""
-                    &&
-                    term.toUpperCase() !== " "
-                )
+                    )[0].move)       
         })
-
     }
 
 

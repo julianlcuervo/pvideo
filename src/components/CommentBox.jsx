@@ -8,7 +8,7 @@ const CommentBox = (props) => {
     let button = document.getElementById("button");
 
     if(user && text){
-        button.addEventListener("click",useComment)
+        button.addEventListener("click",useComment);
     }
     function useComment(){
         if(user.value !== "" && text.value !== ""){
