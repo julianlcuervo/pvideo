@@ -3,14 +3,23 @@ import '../assets/styles/components/RegisterBox.scss';
 import userIcon from '../assets/static/user-icon.png';
 
 
-class RegisterBox extends React.Component {
-
+class RegisterBox extends Component {
     constructor(props){
         super(props);
- 
+        this.useRegister = this.useRegister.bind(this)
         this.state = {
             fields: {},
             errors: {}
+        }
+    }
+    useRegister() {
+        let name = document.getElementById("name");
+        let email = document.getElementById("email");
+        let password = document.getElementById("password")
+        if (name && email && password) {
+            if (name.value !== "" && email.value !== "" && password.value !== "") {
+                this.props.useRegister([name.value,email.value,password.value])
+            }
         }
     }
  
@@ -69,16 +78,7 @@ class RegisterBox extends React.Component {
         this.setState({fields});
     }
    
-    useRegister() {
-        let name = document.getElementById("name");
-        let email = document.getElementById("email");
-        let password = document.getElementById("password")
-        if (name && email && password) {
-            if (name.value !== "" && email.value !== "" && password.value !== "") {
-                props.useRegister([name.value,email.value,password.value])
-            }
-        }
-    }
+    
     
     
     render(){
@@ -87,7 +87,7 @@ class RegisterBox extends React.Component {
         <h2>Registrate!</h2>
         <form name="contactform" className="register__container--form" onSubmit= {this.contactSubmit.bind(this)}>
           <div className="col-md-6">
-            <fieldset>
+        
               <input id="name" type="search" placeholder="Nombre" className="input" onChange={this.handleChange.bind(this, "name")} value={this.state.fields["name"]}/>
               <span style={{color: "red"}}>{this.state.errors["name"]}</span>
               <br/>          
@@ -97,12 +97,12 @@ class RegisterBox extends React.Component {
               <input id="password" type="password" placeholder="Contraseña" className="input" onChange={this.handleChange.bind(this, "password")} value={this.state.fields["password"]}/>
               <span style={{color: "red"}}>{this.state.errors["password"]}</span>
               
-            </fieldset>
+           
           </div>
           <div className="col-md-12">
-            <fieldset>
-              <button className="comment-button" id="button" value="Registrar" onClick={this.useRegister}>Registrarse</button>
-            </fieldset>
+            
+              <button className="comment-button" id="button" value="Registrar" onClick={this.useRegister()}>Registrarse</button>
+            
           </div>
         </form>
         </section>

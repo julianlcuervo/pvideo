@@ -24,7 +24,7 @@ class Register extends Component {
 
     render() {
         return (
-            <section className="register" id="register">
+            <section className="register" >
                 <RegisterBox useRegister={term => this.sendRegister(term)}/>
             </section>
         )
