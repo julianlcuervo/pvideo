@@ -11,7 +11,7 @@ import '../assets/styles/App.scss';
 
 const API = 'http://ec2-18-206-124-96.compute-1.amazonaws.com:8000/api/Movie/';
 const APIuser = 'http://ec2-18-206-124-96.compute-1.amazonaws.com:8000/api/User/'
-const APIAI = 'http://54.89.89.162:3000/'
+const APIAI = 'http://54.145.135.30:3000/'
 
 class Home extends Component {
 
