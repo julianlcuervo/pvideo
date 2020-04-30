@@ -1,5 +1,6 @@
 import React from 'react';
 import '../assets/styles/components/RegisterBox.scss';
+import { Link } from 'react-router-dom'
 import userIcon from '../assets/static/user-icon.png';
 
 const RegisterBox = (props) => {
@@ -22,7 +23,10 @@ const RegisterBox = (props) => {
                 <input id="email" type="search" className="input" placeholder="Correo" />
                 <input id="password" className="input" type="password" placeholder="Contraseña" />
             </form>
-            <input id="button" onClick={useRegister} type="button" className="comment-button" value="Registrar" />
+            <Link to={`/login/`}>
+            <input id="buttonRegister" onClick={useRegister} type="button" className="comment-button" value="Registrar" />
+            </Link>
+            
         </section>
     )
 }

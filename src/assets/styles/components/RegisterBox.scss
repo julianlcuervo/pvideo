@@ -9,8 +9,9 @@
     flex-direction: column;
     justify-content: space-around;
     min-height: 600px;
-    padding: 60px 68px 40px;
-    width: 300px;
+    padding-left: 30px;
+    padding-right: 0;
+
   }
   
   .register__container--form {
@@ -27,4 +28,13 @@
   
   .register__container a:hover {
     text-decoration: underline;
+  }
+
+  #name, #email, #password, #buttonRegister{
+    width: 90%;
+  }
+
+  #buttonRegister{
+    height: 50px;
+    margin-bottom: 70px;
   }
