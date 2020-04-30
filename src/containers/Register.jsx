@@ -7,6 +7,7 @@ const API = 'http://ec2-18-206-124-96.compute-1.amazonaws.com:8000/api/User/';
 class Register extends Component {
     
     sendRegister(term){
+        console.log(term)
         fetch(API, {
             method: 'POST',
             headers: {

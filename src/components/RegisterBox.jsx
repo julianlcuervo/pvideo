@@ -4,15 +4,20 @@ import { Link } from 'react-router-dom'
 import userIcon from '../assets/static/user-icon.png';
 
 
-class RegisterBox extends React.Component {
+class RegisterBox extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       fields: {},
       errors: {}
     }
+    this.useRegister = this.useRegister.bind(this);
+    this.term = this.props;
+    
+    
+    console.log(this.term.useRegister)
+    //this.useRegister = props.useRegister.bind();
   }
 
   handleValidation() {
@@ -76,7 +81,9 @@ class RegisterBox extends React.Component {
     let password = document.getElementById("password")
     if (name && email && password) {
       if (name.value !== "" && email.value !== "" && password.value !== "") {
-        props.useRegister([name.value, email.value, password.value])
+        //this.props.useRegister([name.value, email.value, password.value])
+        const { history } = this.props;
+        history.push('/login')
       }
     }
   }
@@ -88,29 +95,26 @@ class RegisterBox extends React.Component {
         <h2>Registrate!</h2>
         <form name="contactform" className="register__container--form" onSubmit={this.contactSubmit.bind(this)}>
           <div className="col-md-6">
-            <fieldset>
-              <input id="name" type="search" placeholder="Nombre" className="input" onChange={this.handleChange.bind(this, "name")} value={this.state.fields["name"]} />
-              <span style={{ color: "red" }}>{this.state.errors["name"]}</span>
-              <br />
-              <input id="email" type="search" placeholder="Email" className="input" onChange={this.handleChange.bind(this, "email")} value={this.state.fields["email"]} />
-              <span style={{ color: "red" }}>{this.state.errors["email"]}</span>
-              <br />
-              <input id="password" type="password" placeholder="Contraseña" className="input" onChange={this.handleChange.bind(this, "password")} value={this.state.fields["password"]} />
-              <span style={{ color: "red" }}>{this.state.errors["password"]}</span>
-
-            </fieldset>
+            <input id="name" type="search" placeholder="Nombre" className="input" onChange={this.handleChange.bind(this, "name")} value={this.state.fields["name"]} />
+            <br></br>
+            <h6 style={{ color: "red" }}>{this.state.errors["name"]}</h6>
+            <br />
+            <input id="email" type="search" placeholder="Email" className="input" onChange={this.handleChange.bind(this, "email")} value={this.state.fields["email"]} />
+            <br></br>
+            <h6 style={{ color: "red" }}>{this.state.errors["email"]}</h6>
+            <br />
+            <input id="password" type="password" placeholder="Contraseña" className="input" onChange={this.handleChange.bind(this, "password")} value={this.state.fields["password"]} />
+            <br></br>
+            <h6 style={{ color: "red" }}>{this.state.errors["password"]}</h6>
           </div>
           <div className="col-md-12">
-            <fieldset>
-              <button className="comment-button" id="button" value="Registrar" onClick={this.useRegister}>Registrarse</button>
-            </fieldset>
+            <button className="comment-button" id="buttonRegister" value="Registrar" onClick={this.useRegister}>Registrarse</button>
           </div>
         </form>
       </section>
 
     )
   }
-
 }
 
 export default RegisterBox;
