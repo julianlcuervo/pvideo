@@ -13,10 +13,10 @@ class RegisterBox extends Component {
       errors: {}
     }
     this.useRegister = this.useRegister.bind(this);
-    this.term = this.props;
+    //this.term = this.props;
     
     
-    console.log(this.term.useRegister)
+    //console.log(this.term.useRegister)
     //this.useRegister = props.useRegister.bind();
   }
 
