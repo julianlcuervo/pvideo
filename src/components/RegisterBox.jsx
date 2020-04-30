@@ -81,9 +81,7 @@ class RegisterBox extends Component {
     let password = document.getElementById("password")
     if (name && email && password) {
       if (name.value !== "" && email.value !== "" && password.value !== "") {
-        //this.props.useRegister([name.value, email.value, password.value])
-        const { history } = this.props;
-        history.push('/login')
+        this.props.useRegister([name.value, email.value, password.value])
       }
     }
   }
@@ -97,19 +95,25 @@ class RegisterBox extends Component {
           <div className="col-md-6">
             <input id="name" type="search" placeholder="Nombre" className="input" onChange={this.handleChange.bind(this, "name")} value={this.state.fields["name"]} />
             <br></br>
-            <h6 style={{ color: "red" }}>{this.state.errors["name"]}</h6>
+            <h6 style={{ color: "white" }}>{this.state.errors["name"]}</h6>
             <br />
             <input id="email" type="search" placeholder="Email" className="input" onChange={this.handleChange.bind(this, "email")} value={this.state.fields["email"]} />
             <br></br>
-            <h6 style={{ color: "red" }}>{this.state.errors["email"]}</h6>
+            <h6 style={{ color: "white" }}>{this.state.errors["email"]}</h6>
             <br />
             <input id="password" type="password" placeholder="Contraseña" className="input" onChange={this.handleChange.bind(this, "password")} value={this.state.fields["password"]} />
             <br></br>
-            <h6 style={{ color: "red" }}>{this.state.errors["password"]}</h6>
+            <h6 style={{ color: "white" }}>{this.state.errors["password"]}</h6>
           </div>
           <div className="col-md-12">
             <button className="comment-button" id="buttonRegister" value="Registrar" onClick={this.useRegister}>Registrarse</button>
           </div>
+          <p className="login__container--register">
+                Iniciar Sesión
+                <Link to="/login">
+                    LogIn
+                </Link>
+            </p>
         </form>
       </section>
 
