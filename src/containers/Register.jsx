@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import RegisterBox from '../components/RegisterBox';
 import '../assets/styles/components/Register.scss';
 
-const API = 'http://ec2-54-145-135-30.compute-1.amazonaws.com:8000/api/User/'; 
+const API = 'http://ec2-18-206-124-96.compute-1.amazonaws.com:8000/api/User/'; 
 class Register extends Component {
-
+    
     sendRegister(term){
         fetch(API, {
             method: 'POST',
@@ -21,9 +21,10 @@ class Register extends Component {
         })
     }
 
+
     render() {
         return (
-            <section className="register">
+            <section className="register" id="register">
                 <RegisterBox useRegister={term => this.sendRegister(term)}/>
             </section>
         )

@@ -6,8 +6,8 @@ import '../assets/styles/components/Bloc.scss';
 import '../assets/styles/App.scss';
 import { userInfo } from 'os';
 
-const API = 'http://ec2-54-145-135-30.compute-1.amazonaws.com:8000/api/Movie/';
-const APIcomments = 'http://ec2-54-145-135-30.compute-1.amazonaws.com:8000/api/Comment/';
+const API = 'http://ec2-18-206-124-96.compute-1.amazonaws.com:8000/api/Movie/';
+const APIcomments = 'http://ec2-18-206-124-96.compute-1.amazonaws.com:8000/api/Comment/';
 class Bloc extends Component {
 
     constructor(props) {
