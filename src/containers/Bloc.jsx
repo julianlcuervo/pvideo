@@ -35,6 +35,9 @@ class Bloc extends Component {
                     item.idMovie === Number(this.id)
                 )
             }));
+        if (this.props.location.state == undefined) {
+            this.props.history.push('/login')
+        }
     }
 
     viewComment(term) {
