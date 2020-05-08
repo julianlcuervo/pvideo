@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../assets/styles/components/RegisterBox.scss';
 import { Link } from 'react-router-dom'
+import { withRouter } from "react-router-dom";
 import userIcon from '../assets/static/user-icon.png';
 
 
@@ -13,9 +14,10 @@ class RegisterBox extends Component {
       errors: {}
     }
     this.useRegister = this.useRegister.bind(this);
+    console.log(props.__proto__)
     //this.term = this.props;
-    
-    
+
+
     //console.log(this.term.useRegister)
     //this.useRegister = props.useRegister.bind();
   }
@@ -82,10 +84,11 @@ class RegisterBox extends Component {
     if (name && email && password) {
       if (name.value !== "" && email.value !== "" && password.value !== "") {
         this.props.useRegister([name.value, email.value, password.value])
+        alert("Registro exitoso")
+        this.props.history.push('/login')
       }
     }
   }
-
 
   render() {
     return (
@@ -106,14 +109,15 @@ class RegisterBox extends Component {
             <h6 style={{ color: "white" }}>{this.state.errors["password"]}</h6>
           </div>
           <div className="col-md-12">
+            <br></br>
             <button className="comment-button" id="buttonRegister" value="Registrar" onClick={this.useRegister}>Registrarse</button>
           </div>
           <p className="login__container--register">
-                Iniciar Sesión
+            Iniciar Sesión
                 <Link to="/login">
-                    LogIn
+              LogIn
                 </Link>
-            </p>
+          </p>
         </form>
       </section>
 
@@ -121,4 +125,4 @@ class RegisterBox extends Component {
   }
 }
 
-export default RegisterBox;
+export default withRouter(RegisterBox);

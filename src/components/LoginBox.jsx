@@ -70,12 +70,14 @@ class LoginBox extends Component {
                 <h2>Inicia sesión</h2>
                 <form className="login__container--form" onSubmit={this.contactSubmit.bind(this)}>
                     <input id="email" type="search" className="input" placeholder="Correo"  onChange={this.handleChange.bind(this, "email")} value={this.state.fields["email"]} />
-                    <br></br>
+                    
                     <h6 style={{ color: "white" }}>{this.state.errors["email"]}</h6>
                     <input id="password" className="input" type="password" placeholder="Contraseña" onChange={this.handleChange.bind(this, "password")} value={this.state.fields["password"]} />
-                    <br></br>
+                    
                     <h6 style={{ color: "white" }}>{this.state.errors["password"]}</h6>
                     <div className="col-md-12">
+                        <br></br>
+                        <br></br>
                         <button className="comment-button" id="buttonRegister" value="Ingresar" onClick={this.useRegister}>Iniciar sesión</button>
                     </div>  
                 </form>
@@ -84,6 +86,7 @@ class LoginBox extends Component {
                 <p className="login__container--register">
                     No tienes ninguna cuenta
                 <Link to="/register">
+                <br></br>
                         Regístrate
                 </Link>
                 </p>
