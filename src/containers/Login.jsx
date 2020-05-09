@@ -26,9 +26,9 @@ class Login extends Component {
 
   Authorization(term){
     if(term[0] == 'Credenciales incorrectas'){
-      alert('Información Invalida')
+      swal('Información Invalida',"","error")
     } else if(term[0] == 'No existe el usuario'){
-      alert('Información Invalida')
+      swal('Información Invalida',"","error")
     } else {
       fetch(APIuser)
             .then(response => response.json())
