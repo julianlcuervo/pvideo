@@ -8,6 +8,7 @@ import { userInfo } from 'os';
 
 const API = 'http://ec2-18-206-124-96.compute-1.amazonaws.com:8000/api/Movie/';
 const APIcomments = 'http://ec2-18-206-124-96.compute-1.amazonaws.com:8000/api/Comment/';
+const APIuser = 'http://ec2-18-206-124-96.compute-1.amazonaws.com:8000/api/User/'
 class Bloc extends Component {
 
     constructor(props) {
@@ -16,10 +17,14 @@ class Bloc extends Component {
             initialState: [],
             selectMovie: [],
             comments: [],
-            stateComment: ''
+            stateComment: '',
+            selectUser: [{}]
         };
-        this.id = this.props.match.params.id;
+        this.id = this.props.match.params.idMovie;
+        this.idUser = this.props.match.params.idUser;
+        console.log(this.props)
     }
+
     componentDidMount() {
         fetch(API)
             .then(response => response.json())
@@ -35,6 +40,13 @@ class Bloc extends Component {
                     item.idMovie === Number(this.id)
                 )
             }));
+        fetch(APIuser)
+            .then(response => response.json())
+            .then(data => this.setState({
+                selectUser: data.filter(item =>
+                    item.IDUser == this.idUser
+                )
+            }))
         if (this.props.location.state == undefined) {
             this.props.history.push('/login')
         }
@@ -42,8 +54,13 @@ class Bloc extends Component {
 
     viewComment(term) {
         const { stateComment } = this.state;
-        if (stateComment !== term[1]) {
-            this.setState({ stateComment: term[1] })
+        const { selectUser } = this.state;
+        console.log(selectUser[0].Name)
+        const name = selectUser[0].Name;
+        const email = selectUser[0].Email;
+        if (stateComment !== term) {
+            this.setState({ stateComment: term })
+            
             fetch(APIcomments, {
                 method: 'POST',
                 headers: {
@@ -52,8 +69,8 @@ class Bloc extends Component {
                 },
                 body: JSON.stringify({
                     idMovie: this.id,
-                    text: term[1],
-                    userName: term[0]
+                    text: term,
+                    userName: name+" - "+email
                 })
             })
             setTimeout(() => {
@@ -72,7 +89,9 @@ class Bloc extends Component {
         const { initialState } = this.state;
         const { selectMovie } = this.state;
         const { comments } = this.state;
-        //console.log(selectMovie)
+        const { selectUser } = this.state;
+
+        //console.log(selectUser[0].Name)
         //console.log(comments["1"].idComment)
         return (
             <section className="home" id="home">

@@ -9,7 +9,7 @@ import Login from '../containers/Login'
 const App = () => (
     <BrowserRouter>
         <Route exact path="/home/:id" component={Home} />
-        <Route exact path="/bloc/:id" component={Bloc} />
+        <Route exact path="/bloc/:idUser/:idMovie" component={Bloc} />
         <Route exact path="/player/:id" component={Player} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/" component={Login} />

@@ -105,7 +105,7 @@ class Home extends Component {
     }
 
     selectItem(term) {
-        this.props.history.push('/bloc/' + term,false);
+        this.props.history.push('/bloc/'+this.id+"/"+term,false);
     }
 
     render() {
