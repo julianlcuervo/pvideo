@@ -51,7 +51,6 @@ class LoginBox extends Component {
     contactSubmit(e) {
         e.preventDefault();
         if (this.handleValidation()) {
-          alert("Inicio de Sesión exitoso");
         } else {
           alert("Errores en el formulario")
         }

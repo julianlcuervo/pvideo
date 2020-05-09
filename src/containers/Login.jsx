@@ -39,6 +39,7 @@ class Login extends Component {
   }
 
   user(data){
+    alert("Inicio de Sesión exitoso");
     this.props.history.push('/home/'+data[0].IDUser,false)
   }
 
