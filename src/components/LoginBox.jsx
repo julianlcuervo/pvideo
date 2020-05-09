@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../assets/styles/components/LoginBox.scss';
 import { Link } from 'react-router-dom'
+import swal from 'sweetalert';
 
 class LoginBox extends Component {
 
@@ -52,7 +53,7 @@ class LoginBox extends Component {
         e.preventDefault();
         if (this.handleValidation()) {
         } else {
-          alert("Errores en el formulario")
+          swal("Errores en el formulario","","error")
         }
       }
     

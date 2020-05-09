@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../assets/styles/components/RegisterBox.scss';
 import { Link } from 'react-router-dom'
 import { withRouter } from "react-router-dom";
-import userIcon from '../assets/static/user-icon.png';
+import swal from 'sweetalert';
 
 
 class RegisterBox extends Component {
@@ -65,9 +65,10 @@ class RegisterBox extends Component {
   contactSubmit(e) {
     e.preventDefault();
     if (this.handleValidation()) {
-      alert("Registro exitoso");
+      swal("Registro exitoso","","success");
+      this.useRegister()
     } else {
-      alert("Errores en el formulario")
+      swal("Errores en el formulario","","error")
     }
   }
 
@@ -84,7 +85,6 @@ class RegisterBox extends Component {
     if (name && email && password) {
       if (name.value !== "" && email.value !== "" && password.value !== "") {
         this.props.useRegister([name.value, email.value, password.value])
-        alert("Registro exitoso")
         this.props.history.push('/login')
       }
     }
@@ -110,7 +110,7 @@ class RegisterBox extends Component {
           </div>
           <div className="col-md-12">
             <br></br>
-            <button className="comment-button" id="buttonRegister" value="Registrar" onClick={this.useRegister}>Registrarse</button>
+            <button className="comment-button" id="buttonRegister" value="Registrar" >Registrarse</button>
           </div>
           <p className="login__container--register">
             Iniciar Sesión

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import LoginBox from '../components/LoginBox'
 import '../assets/styles/components/Login.scss'
+import swal from 'sweetalert';
 
 const API = 'http://ec2-18-206-124-96.compute-1.amazonaws.com:8000/api/Login/'
 const APIuser = 'http://ec2-18-206-124-96.compute-1.amazonaws.com:8000/api/User/'
@@ -39,7 +40,8 @@ class Login extends Component {
   }
 
   user(data){
-    alert("Inicio de Sesión exitoso");
+    swal("Inicio de Sesión exitoso","","success");
+    //swal("Inicio de Sesión exitoso");
     this.props.history.push('/home/'+data[0].IDUser,false)
   }
 
