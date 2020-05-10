@@ -52,6 +52,7 @@ class LoginBox extends Component {
     contactSubmit(e) {
         e.preventDefault();
         if (this.handleValidation()) {
+          this.useRegister()
         } else {
           swal("Errores en el formulario","","error")
         }
@@ -78,7 +79,7 @@ class LoginBox extends Component {
                     <div className="col-md-12">
                         <br></br>
                         <br></br>
-                        <button className="comment-button" id="buttonRegister" value="Ingresar" onClick={this.useRegister}>Iniciar sesión</button>
+                        <button className="comment-button" id="buttonRegister" value="Ingresar">Iniciar sesión</button>
                     </div>  
                 </form>
                    

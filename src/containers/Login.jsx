@@ -24,25 +24,25 @@ class Login extends Component {
       .then(data => this.Authorization(data))
   }
 
-  Authorization(term){
-    if(term[0] == 'Credenciales incorrectas'){
-      swal('Información Invalida',"","error")
-    } else if(term[0] == 'No existe el usuario'){
-      swal('Información Invalida',"","error")
+  Authorization(term) {
+    if (term[0] == 'Credenciales incorrectas') {
+      swal('Información Invalida', "", "error")
+    } else if (term[0] == 'No existe el usuario') {
+      swal('Información Invalida', "", "error")
     } else {
       fetch(APIuser)
-            .then(response => response.json())
-            .then(data => this.user(data.filter(item =>
-              item.Email == term.Email
-          )))
+        .then(response => response.json())
+        .then(data => this.user(data.filter(item =>
+          item.Email == term.Email
+        )))
       //this.props.history.push('/home/')
     }
   }
 
-  user(data){
-    swal("Inicio de Sesión exitoso","","success");
+  user(data) {
+    swal("Inicio de Sesión exitoso", "", "success");
     //swal("Inicio de Sesión exitoso");
-    this.props.history.push('/home/'+data[0].IDUser,false)
+    this.props.history.push('/home/' + data[0].IDUser, false)
   }
 
 
