@@ -26,8 +26,7 @@ class Header extends Component {
                     <p>{this.Name}</p>
                     </div>
                     <ul>
-                        <li><a href="/">Cuenta</a></li>
-                        <li><a href="/">Cerrar sesión</a></li>
+                        <li><a href="/login">Cerrar sesión</a></li>
                     </ul>
                 </div>
             </header>
