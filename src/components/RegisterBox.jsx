@@ -84,7 +84,7 @@ class RegisterBox extends Component {
     let password = document.getElementById("password")
     if (name && email && password) {
       if (name.value !== "" && email.value !== "" && password.value !== "") {
-        this.props.useRegister([name.value, email.value, password.value])
+        this.props.useRegister([name.value, email.value.toLowerCase(), password.value])
         this.props.history.push('/login')
       }
     }

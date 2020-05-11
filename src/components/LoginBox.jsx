@@ -45,7 +45,7 @@ class LoginBox extends Component {
         let password = document.getElementById("password")
         if (email && password) {
             if (email.value !== "" && password.value !== "") {
-                this.props.useLogin([email.value, password.value])
+                this.props.useLogin([email.value.toLowerCase(), password.value])
             }
         }
     }
