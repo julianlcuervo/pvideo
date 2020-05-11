@@ -5,13 +5,12 @@ import Categories from '../components/Categories';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
 import Footer from '../components/Footer';
-import Login from '../containers/Login';
 import '../assets/styles/App.scss';
 
 
 const API = 'http://ec2-18-206-124-96.compute-1.amazonaws.com:8000/api/Movie/';
 const APIuser = 'http://ec2-18-206-124-96.compute-1.amazonaws.com:8000/api/User/'
-const APIAI = 'http://54.145.135.30:3000/'
+const APIAI = 'http://18.206.124.96:3000/'
 
 class Home extends Component {
 
@@ -23,8 +22,8 @@ class Home extends Component {
             trends: [],
             Recomends: [],
             AI: [],
-            selectImage: [],
-            selectUser: []
+            selectUser: [],
+            translateWord: ''
         };
 
         this.id = this.props.match.params.id;
@@ -74,10 +73,22 @@ class Home extends Component {
 
     }
 
+    translateSearch(term) {
+        if (term !== "") {
+            fetch('https://translate.yandex.net/api/v1.5/tr.json/translate?key='
+                + 'trnsl.1.1.20200511T195703Z.19d6cedd3c437cbf.4df413b84acb49083c3d95bf8d52e3d98853b4d1'
+                + '&lang='
+                + encodeURIComponent('en')
+                + '&text='
+                + encodeURIComponent(term))
+                .then(response => response.json())
+                .then(data => this.imgSearch(data.text[0]));
+        }
+    }
+
     imgSearch(term) {
         const { AI } = this.state
         const { initialState } = this.state
-
         this.setState({
             selectMovie:
                 initialState.filter(item =>
@@ -95,17 +106,8 @@ class Home extends Component {
         })
     }
 
-
-    selectionImage() {
-        const { selectImage } = this.state
-        this.state({
-            selectMovie:
-                console.log(selectImage)
-        })
-    }
-
     selectItem(term) {
-        this.props.history.push('/bloc/'+this.id+"/"+term,false);
+        this.props.history.push('/bloc/' + this.id + "/" + term, false);
     }
 
     render() {
@@ -115,16 +117,12 @@ class Home extends Component {
         const { Recomends } = this.state;
         const { selectUser } = this.state;
 
-        console.log(this.props)
-        //console.log(this.props.match.params.id)
-
-
         return (
             <div className="App">
                 {selectUser.map(item =>
                     <Header key={this.props.match.params.id} {...item} />
                 )}
-                <Search onSearchTermChange={term => { this.videoSearch(term), this.imgSearch(term) }} />
+                <Search onSearchTermChange={term => { this.videoSearch(term), this.translateSearch(term) }} />
                 {selectMovie.length >= 1 &&
                     <Categories title="Resultados de busqueda">
                         <Carousel>
@@ -170,7 +168,6 @@ class Home extends Component {
                         )}
                     </Carousel>
                 </Categories>
-
                 <Footer />
             </div>
         );

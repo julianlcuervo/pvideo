@@ -22,7 +22,7 @@ class Bloc extends Component {
         };
         this.id = this.props.match.params.idMovie;
         this.idUser = this.props.match.params.idUser;
-        console.log(this.props)
+        //console.log(this.props)
     }
 
     componentDidMount() {
