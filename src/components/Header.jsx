@@ -5,28 +5,26 @@ import logo from '../assets/static/icon.png';
 import userIcon from '../assets/static/user-icon.png';
 
 class Header extends Component {
+
     constructor(props) {
         super(props);
         this.id = props.IDUser;
         this.Email = props.Email;
         this.Name = props.Name;
+
     }
 
     render() {
         return (
             <header className="header" >
-
-                <Link to="/">
-                    <img className="header__img" src={logo} alt="icon" />
-                </Link>
-
+                <img className="header__img" src={logo} alt="icon" />
                 <div className="header__menu">
                     <div className="header__menu--profile">
                         <img src={userIcon} alt="" />
-                    <p>{this.Name}</p>
+                        <p>{this.Name}</p>
                     </div>
                     <ul>
-                        <li><a href="/login">Cerrar sesión</a></li>
+                        <li><a href="/login" onClick={event => this.props.statePage(false)}>Cerrar sesión</a></li>
                     </ul>
                 </div>
             </header>

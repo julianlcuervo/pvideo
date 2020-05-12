@@ -110,6 +110,11 @@ class Home extends Component {
         this.props.history.push('/bloc/' + this.id + "/" + term, false);
     }
 
+    changeStatePage(term) {
+        this.props.history.push(term)
+        console.log(this.props.location.state)
+    }
+
     render() {
         const { initialState } = this.state;
         const { selectMovie } = this.state;
@@ -120,7 +125,7 @@ class Home extends Component {
         return (
             <div className="App">
                 {selectUser.map(item =>
-                    <Header key={this.props.match.params.id} {...item} />
+                    <Header statePage={term => this.changeStatePage(term)} key={this.props.match.params.id} {...item} />
                 )}
                 <Search onSearchTermChange={term => { this.videoSearch(term), this.translateSearch(term) }} />
                 {selectMovie.length >= 1 &&

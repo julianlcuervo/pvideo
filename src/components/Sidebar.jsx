@@ -32,7 +32,7 @@ class Sidebar extends Component {
             rating: Math.floor((this.duration+nextValue)/2),
             stateEditing: false 
         });
-        this.props.history.push(true)
+        //this.props.history.push(true)
         //console.log(rating)
         //this.men();
     }

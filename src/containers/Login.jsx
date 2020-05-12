@@ -42,7 +42,7 @@ class Login extends Component {
   user(data) {
     swal("Inicio de Sesión exitoso", "", "success");
     //swal("Inicio de Sesión exitoso");
-    this.props.history.push('/home/' + data[0].IDUser, false)
+    this.props.history.push('/home/' + data[0].IDUser, true)
   }
 
 
