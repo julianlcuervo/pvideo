@@ -89,21 +89,24 @@ class Home extends Component {
     imgSearch(term) {
         const { AI } = this.state
         const { initialState } = this.state
-        this.setState({
-            selectMovie:
-                initialState.filter(item =>
-                    item.cover === AI.arl.filter(item =>
-                        item.r1.toUpperCase() === term.toUpperCase()
-                        ||
-                        item.r2.toUpperCase() === term.toUpperCase()
-                        ||
-                        item.r3.toUpperCase() === term.toUpperCase()
-                        ||
-                        item.r4.toUpperCase() === term.toUpperCase()
-                        ||
-                        item.r5.toUpperCase() === term.toUpperCase()
-                    )[0].move)
-        })
+        try {
+            this.setState({
+                selectMovie:
+                    initialState.filter(item =>
+                        item.cover === AI.arl.filter(item =>
+                            item.r1.toUpperCase() === term.toUpperCase()
+                            ||
+                            item.r2.toUpperCase() === term.toUpperCase()
+                            ||
+                            item.r3.toUpperCase() === term.toUpperCase()
+                            ||
+                            item.r4.toUpperCase() === term.toUpperCase()
+                            ||
+                            item.r5.toUpperCase() === term.toUpperCase()
+                        )[0].move)
+            })
+        } catch (error){
+        }
     }
 
     selectItem(term) {
