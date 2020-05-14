@@ -65,7 +65,7 @@ class RegisterBox extends Component {
   contactSubmit(e) {
     e.preventDefault();
     if (this.handleValidation()) {
-      swal("Información completa","","success");
+      //swal("Información completa","","success");
       this.useRegister()
     } else {
       swal("Errores en el formulario","","error")
