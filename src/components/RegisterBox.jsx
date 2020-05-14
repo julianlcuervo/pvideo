@@ -65,7 +65,7 @@ class RegisterBox extends Component {
   contactSubmit(e) {
     e.preventDefault();
     if (this.handleValidation()) {
-      swal("Registro exitoso","","success");
+      swal("Información completa","","success");
       this.useRegister()
     } else {
       swal("Errores en el formulario","","error")
@@ -85,7 +85,7 @@ class RegisterBox extends Component {
     if (name && email && password) {
       if (name.value !== "" && email.value !== "" && password.value !== "") {
         this.props.useRegister([name.value, email.value.toLowerCase(), password.value])
-        this.props.history.push('/login')
+        //this.props.history.push('/login')
       }
     }
   }
