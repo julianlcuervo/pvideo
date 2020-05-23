@@ -4,6 +4,8 @@ import '../assets/styles/components/Sidebar.scss';
 import { withRouter } from "react-router-dom";
 
 const API = 'http://ec2-18-206-124-96.compute-1.amazonaws.com:8000/api/Movie/';
+const APIrating = "http://ec2-18-206-124-96.compute-1.amazonaws.com:8000/api/Rating/"
+
 class Sidebar extends Component {
     constructor(props) {
         super(props);
@@ -17,21 +19,49 @@ class Sidebar extends Component {
         this.description = props.description;
         this.language = props.language;
         this.state = {
-            rating: this.duration,
+            rating: this.duration.toFixed(1),
             ratingNow: this.duration,
             stateEditing: true
         };
-        console.log(this.props.match.params.idMovie)
-        console.log(this.props.match.params.idUser)
+        //console.log(this.props.match.params.idMovie)
+        //console.log(this.props.match.params.idUser)
+    }
+
+    componentDidUpdate(){
+        const { rating } = this.state;
+        console.log(rating)
+        fetch(API+this.id+"/", {
+            method: 'PATCH',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                duration: rating
+            })
+        })
+        /*fetch(APIrating, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user_id: this.props.match.params.idUser,
+                movie_id: this.props.match.params.idMovie,
+                rating: false
+            })
+        }).then(console.log("done"))*/
     }
 
 
     onStarClick(nextValue, prevValue, name) {
         this.setState({ 
             ratingNow: nextValue,
-            rating: Math.floor((this.duration+nextValue)/2),
+            rating: ((this.duration+nextValue)/2).toFixed(1),
             stateEditing: false 
         });
+        this.componentDidUpdate;
         //this.props.history.push(true)
         //console.log(rating)
         //this.men();
@@ -42,16 +72,7 @@ class Sidebar extends Component {
         const { ratingNow } = this.state;
         const { stateEditing } = this.state;
         
-        fetch(API+this.id+"/", {
-            method: 'PATCH',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                duration: Math.floor(rating)
-            })
-        })
+
 
         return (
             <div className="sidebar">

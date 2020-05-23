@@ -34,8 +34,15 @@ class Home extends Component {
             .then(response => response.json())
             .then(data => this.setState({
                 initialState: data,
-                trends: data.filter(item =>
-                    item.identifier === "Tendencia"
+                trends: data.sort(function (a, b) {
+                    if (a.duration < b.duration) {
+                        return 1;
+                    }
+                    if (a.duration > b.duration) {
+                        return -1;
+                    }
+                    return 0;
+                }
                 ),
                 Recomends: data.filter(item =>
                     item.identifier === "Recomendado"
@@ -53,6 +60,7 @@ class Home extends Component {
                     item.IDUser == this.props.match.params.id
                 )
             }))
+            
         if (this.props.location.state == undefined) {
             this.props.history.push('/login')
         }
@@ -105,7 +113,7 @@ class Home extends Component {
                             item.r5.toUpperCase() === term.toUpperCase()
                         )[0].move)
             })
-        } catch (error){
+        } catch (error) {
         }
     }
 
@@ -124,6 +132,7 @@ class Home extends Component {
         const { trends } = this.state;
         const { Recomends } = this.state;
         const { selectUser } = this.state;
+        trends.splice(6)
 
         return (
             <div className="App">
