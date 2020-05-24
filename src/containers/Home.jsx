@@ -23,17 +23,25 @@ class Home extends Component {
             Recomends: [],
             AI: [],
             selectUser: [],
-            translateWord: ''
+            translateWord: '',
+            updateRecommends: []
         };
 
         this.id = this.props.match.params.id;
     }
 
+    /*componentWillUnmount(){
+        fetch('https://r6fe7ywwc8.execute-api.us-east-1.amazonaws.com/PersonalizeEste')
+        .then(response => response.json())
+        .then(data => this.setState({
+            updateRecommends: data
+        }))
+    }*/
+
     componentDidMount() {
         fetch(API)
             .then(response => response.json())
             .then(data => this.setState({
-                initialState: data,
                 trends: data.sort(function (a, b) {
                     if (a.duration < b.duration) {
                         return 1;
@@ -43,16 +51,35 @@ class Home extends Component {
                     }
                     return 0;
                 }
-                ),
+                )/*,
                 Recomends: data.filter(item =>
                     item.identifier === "Recomendado"
-                )
+                )*/
+
             }));
+
+        fetch(API)
+            .then(response => response.json())
+            .then(data => this.setState({
+                initialState: data
+            }))
+
+        fetch('https://r6fe7ywwc8.execute-api.us-east-1.amazonaws.com/PersonalizeEste')
+            .then(response => response.json())
+            .then(data => this.uptRating(data))
+
+        /*fetch('https://r6fe7ywwc8.execute-api.us-east-1.amazonaws.com/PersonalizeEste')
+            .then(response => response.json())
+            .then(data => this.setState({
+                updateRecommends: data
+            })).then(console.log(updateRecommends))*/
+
         fetch(APIAI)
             .then(response => response.json())
             .then(data => this.setState({
                 AI: data
             }))
+
         fetch(APIuser)
             .then(response => response.json())
             .then(data => this.setState({
@@ -60,10 +87,31 @@ class Home extends Component {
                     item.IDUser == this.props.match.params.id
                 )
             }))
-            
+
         if (this.props.location.state == undefined) {
             this.props.history.push('/login')
         }
+    }
+
+    uptRating(term) {
+        //console.log(term.response)
+        fetch(API)
+            .then(response => response.json())
+            .then(data => this.setState({
+                Recomends: data.filter(item =>
+                    item.id == term.response[0]
+                    ||
+                    item.id == term.response[1]
+                    ||
+                    item.id == term.response[2]
+                    ||
+                    item.id == term.response[3]
+                    ||
+                    item.id == term.response[4]
+                    ||
+                    item.id == term.response[5]
+                )
+            }))
     }
 
     videoSearch(term) {
@@ -98,23 +146,62 @@ class Home extends Component {
         const { AI } = this.state
         const { initialState } = this.state
         try {
-            this.setState({
-                selectMovie:
-                    initialState.filter(item =>
-                        item.cover === AI.arl.filter(item =>
-                            item.r1.toUpperCase() === term.toUpperCase()
-                            ||
-                            item.r2.toUpperCase() === term.toUpperCase()
-                            ||
-                            item.r3.toUpperCase() === term.toUpperCase()
-                            ||
-                            item.r4.toUpperCase() === term.toUpperCase()
-                            ||
-                            item.r5.toUpperCase() === term.toUpperCase()
-                        )[0].move)
-            })
+            initialState.filter(item =>
+                item.cover === AI.arl.filter(item =>
+                    item.r1.toUpperCase() === term.toUpperCase()
+                    ||
+                    item.r2.toUpperCase() === term.toUpperCase()
+                    ||
+                    item.r3.toUpperCase() === term.toUpperCase()
+                    ||
+                    item.r4.toUpperCase() === term.toUpperCase()
+                    ||
+                    item.r5.toUpperCase() === term.toUpperCase()
+                ).forEach(event = (element, index, array) => {
+                    if (array.length == 1) {
+                        this.setState({
+                            selectMovie: initialState.filter(
+                                item =>
+                                    item.cover == array[0].move
+                            )
+                        })
+                    } else if (array.length == 2) {
+                        this.setState({
+                            selectMovie: initialState.filter(
+                                item =>
+                                    item.cover == array[0].move
+                                    ||
+                                    item.cover == array[1].move
+                            )
+                        })
+                    } else if (array.length >= 3) {
+                        this.setState({
+                            selectMovie: initialState.filter(
+                                item =>
+                                    item.cover == array[0].move
+                                    ||
+                                    item.cover == array[1].move
+                                    ||
+                                    item.cover == array[2].move
+                            )
+                        })
+                    } 
+                }))
+
+
         } catch (error) {
         }
+    }
+
+
+    comparation(term) {
+        console.log(term)
+        const { initialState } = this.state
+        this.setState({
+            selectMovie: initialState.filter(item =>
+                item.cover === term
+            )
+        })
     }
 
     selectItem(term) {
@@ -133,6 +220,7 @@ class Home extends Component {
         const { Recomends } = this.state;
         const { selectUser } = this.state;
         trends.splice(6)
+
 
         return (
             <div className="App">
