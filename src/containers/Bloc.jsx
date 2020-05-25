@@ -115,7 +115,7 @@ class Bloc extends Component {
         })
         //console.log(term[2])
             
-        }else (console.log("es falso"))
+        }else (swal("La película ya ha sido calificada", "", "warning"))
         
     }
 
